@@ -1,0 +1,1 @@
+(Archivos editables: Kicad,Altium, Eagle)
