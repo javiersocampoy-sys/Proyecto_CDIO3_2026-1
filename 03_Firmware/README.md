@@ -23,11 +23,13 @@ WiFi.h (Gestión de conectividad si se usa el Wroom para telemetría).
  Pinout (Mapa de Conexiones - Borrador)
 Configuración de pines sugerida (puedes ajustarla según tu config.h real):
 
-Pin ESP32 (C3/Wroom),Componente,Función,Notas
-3V3 / 5V,VCC,Alimentación,Regulada por LM2596
-GND,GND,Tierra,Común a todo el sistema
-GPIO 4,HC-SR04 (Trig),Disparo sensor,Medición de distancia
-GPIO 5,HC-SR04 (Echo),Eco sensor,Medición de distancia
-GPIO 8 (SDA),Pantalla OLED,Datos I2C,Interfaz visual
-GPIO 9 (SCL),Pantalla OLED,Reloj I2C,Interfaz visual
-GPIO 2,LED / Buzzer,Indicador,Estado de terapia
+  Pinout (Mapa de Conexiones)
+
+| Pin ESP32 | Componente | Función | Notas |
+| :--- | :--- | :--- | :--- |
+| **5V / VIN** | LM2596 (Out) | Alimentación | Entrada regulada |
+| **GND** | Sistema | Tierra Común | Unión de todas las tierras |
+| **GPIO 4** | HC-SR04 | Trig | Sensor Ultrasonido |
+| **GPIO 5** | HC-SR04 | Echo | Sensor Ultrasonido |
+| **GPIO 8** | OLED (SDA) | Datos I2C | Pantalla |
+| **GPIO 9** | OLED (SCL) | Reloj I2C | Pantalla |
