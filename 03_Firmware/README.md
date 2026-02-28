@@ -22,6 +22,7 @@ WiFi.h (Gestión de conectividad si se usa el Wroom para telemetría).
 
  Pinout (Mapa de Conexiones - Borrador)
 Configuración de pines sugerida (puedes ajustarla según tu config.h real):
+
 Pin ESP32 (C3/Wroom),Componente,Función,Notas
 3V3 / 5V,VCC,Alimentación,Regulada por LM2596
 GND,GND,Tierra,Común a todo el sistema
