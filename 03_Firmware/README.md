@@ -33,3 +33,32 @@ Configuración de pines sugerida (puedes ajustarla según tu config.h real):
 | **GPIO 5** | HC-SR04 | Echo | Sensor Ultrasonido |
 | **GPIO 8** | OLED (SDA) | Datos I2C | Pantalla |
 | **GPIO 9** | OLED (SCL) | Reloj I2C | Pantalla |
+
+
+ Lógica del Sistema (Arquitectura)
+El dispositivo no utiliza un bucle lineal; emplea una Máquina de Estados para gestionar las fases de la terapia y la seguridad del paciente.
+
+Diagrama de Flujo de Estados
+
+```mermaid
+stateDiagram-v2
+    [*] --> INIT
+    INIT --> IDLE : Comunicación Serial OK
+    
+    IDLE --> GAME_START : Señal desde Maestro/PC
+    
+    state GAME_START {
+        [*] --> SCANNING : Sensor Activo
+        SCANNING --> DETECTION : Distancia < Umbral
+        
+        DETECTION --> FEEDBACK : Encender Luces
+        FEEDBACK --> SEND_DATA : Enviar ID al Maestro
+        
+        SEND_DATA --> COOLDOWN : Debounce (Evitar doble golpe)
+        COOLDOWN --> SCANNING : Reset de detección
+    }
+    
+    GAME_START --> GAME_OVER : Fin de rutina (PC)
+    GAME_OVER --> IDLE : Mostrar resultados
+    
+    ERROR --> IDLE : Reset Manual
